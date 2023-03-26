@@ -1,0 +1,5 @@
+# FMOD artefacts folders
+Build
+.cache
+.unsaved
+.user

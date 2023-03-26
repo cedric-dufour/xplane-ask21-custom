@@ -1,0 +1,321 @@
+A
+1000
+ACF_SOUNDS
+
+#################################################
+# Schleicher ASK 21 sound bank                  #
+# 1.0.0-rc-1                                    #
+# Daniela Rodriguez <daniela@x-plane.com>       #
+# Laminar Research                              #
+#################################################
+
+DISABLE_LEGACY_ALERT_SOUNDS
+
+REQUIRES_BANK Custom.bank
+
+# Spaces 
+#############################################################################################
+
+# -------------------- Cockpit ---------------------
+BEGIN_SOUND_SPACE
+	SOUND_INDEX 0
+	AABB -0.350 -0.160 -2.735 0.350 0.470 0.085
+END_SOUND_SPACE
+
+# Snapshots 
+#############################################################################################
+
+# -------------------- Cockpit ---------------------
+BEGIN_SOUND_ATTACHMENT
+	SNAPSHOT_NAME /in_cockpit
+	VEH_XYZ 0.000 0.155 -2.502
+	PARAM_DREF_IDX 0
+	EVENT_START_COND sim/operation/sound/inside_ratio[0] != 0
+	EVENT_END_COND sim/operation/sound/inside_ratio[0] == 0
+END_SOUND_ATTACHMENT
+
+# -------------------- Canopy ---------------------
+BEGIN_SOUND_ATTACHMENT
+	SNAPSHOT_NAME /in_cockpit_canopy_open
+	VEH_XYZ 0.000 0.201 -1.631
+	PARAM_DREF_IDX 0
+	EVENT_START_COND sim/operation/sound/users_canopy_open_ratio != 0
+	EVENT_END_COND sim/operation/sound/users_canopy_open_ratio == 0
+END_SOUND_ATTACHMENT
+
+# Environment 
+#############################################################################################
+
+# -------------------- Airflow ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/airflow
+	VEH_XYZ 0.000 0.200 -2.365
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+
+# -------------------- Airflow ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/ext_airflow
+	VEH_XYZ 0.000 0.000 -0.365
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+
+# -------------------- Stress ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/stress
+	VEH_PART cockpit 0
+	PARAM_DREF_IDX 0
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/crash
+	VEH_XYZ 0.000 0.000 -0.365
+	EVENT_START_COND sim/flightmodel/failures/onground_any == 1
+	EVENT_START_COND sim/flightmodel/ground/surface_texture_type == 1
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/crash
+	VEH_XYZ 0.000 0.000 -0.365
+	EVENT_START_COND sim/flightmodel/failures/onground_any == 1
+	EVENT_START_COND sim/flightmodel/ground/surface_texture_type == 7
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/crash
+	VEH_XYZ 0.000 0.000 -0.365
+	EVENT_START_COND sim/flightmodel2/misc/has_crashed == 1
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/water_land
+	VEH_XYZ 0.000 0.000 -0.365
+	EVENT_START_COND sim/flightmodel/failures/onground_any == 1
+	EVENT_START_COND sim/flightmodel/ground/surface_texture_type == 1
+	EVENT_AUTO_END_FROM_START_COND
+END_SOUND_ATTACHMENT
+
+# -------------------- Rain int ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/rain_int
+	VEH_PART cockpit 0
+	PARAM_DREF_IDX 0
+	EVENT_START_COND sim/weather/precipitation_on_aircraft_ratio != 0
+	EVENT_END_COND sim/weather/precipitation_on_aircraft_ratio == 0
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/rain_ext
+	VEH_XYZ 0.000 0.000 -0.365
+	EVENT_START_COND sim/weather/precipitation_on_aircraft_ratio != 0
+	EVENT_END_COND sim/weather/precipitation_on_aircraft_ratio == 0
+END_SOUND_ATTACHMENT
+
+# -------------------- Tire roll main ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/ground_roll_main
+	VEH_PART tire 0
+	PARAM_DREF_IDX 0
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/tire_impact
+	VEH_PART tire 0
+	EVENT_POLYPHONIC
+	PARAM_DREF_IDX 0
+	EVENT_START_COND sim/flightmodel/failures/onground_any == 1
+END_SOUND_ATTACHMENT
+
+# -------------------- Tire roll front ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/ground_roll_front
+	VEH_PART tire 1
+	PARAM_DREF_IDX 1
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/tire_impact
+	VEH_PART tire 1
+	EVENT_POLYPHONIC
+	PARAM_DREF_IDX 1
+	EVENT_START_COND sim/flightmodel/failures/onground_any == 1
+END_SOUND_ATTACHMENT
+
+# -------------------- Wing scrape ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/wing_scrape
+	VEH_XYZ -1.624 0.199 -0.458
+	PARAM_DREF_IDX 2
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/environment/wing_scrape
+	VEH_XYZ 1.624 0.199 -0.458
+	PARAM_DREF_IDX 3
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+
+# Equipment 
+#############################################################################################
+
+# -------------------- Canopy ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/equipment/canopy_open
+	VEH_XYZ 0.000 0.184 -1.741
+	EVENT_START_COND DELTA=sim/flightmodel2/misc/custom_slider_ratio[0] > 0
+	EVENT_END_COND DELTA=sim/flightmodel2/misc/custom_slider_ratio[0] <= 0
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/equipment/canopy_close
+	VEH_XYZ 0.000 0.184 -1.741
+	EVENT_START_COND DELTA=sim/flightmodel2/misc/custom_slider_ratio[0] < 0
+	EVENT_END_COND DELTA=sim/flightmodel2/misc/custom_slider_ratio[0] >= 0
+END_SOUND_ATTACHMENT
+
+# Alerts 
+#############################################################################################
+
+# -------------------- Total energy variometer ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/alerts/vario_xlua
+	VEH_XYZ 0.000 -0.085 -2.265
+	EVENT_START_COND sim/cockpit2/switches/total_energy_audio_on == 1
+	EVENT_START_COND sim/cockpit2/electrical/battery_on[0] == 1
+	EVENT_AUTO_END_FROM_START_COND
+END_SOUND_ATTACHMENT
+
+# -------------------- Brake ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/brake_transit
+	VEH_XYZ -0.246 -0.158 -2.152
+	EVENT_START_COND sim/multiplayer/controls/speed_brake_request[0] > 0
+	EVENT_START_COND sim/multiplayer/controls/speed_brake_request[0] < 1
+	EVENT_AUTO_END_FROM_START_COND
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/brake_push
+	VEH_XYZ -0.246 -0.158 -2.152
+	EVENT_START_COND sim/multiplayer/controls/speed_brake_request[0] == 1
+	EVENT_START_COND DELTA=sim/multiplayer/controls/speed_brake_request[0] > 0
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/brake_pull
+	VEH_XYZ -0.246 -0.158 -2.152
+	EVENT_START_COND sim/multiplayer/controls/speed_brake_request[0] == 0
+	EVENT_START_COND DELTA=sim/multiplayer/controls/speed_brake_request[0] < 0
+END_SOUND_ATTACHMENT
+
+# -------------------- Tow release ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/tow_release_hold
+	VEH_XYZ -0.213 -0.068 -2.257
+	EVENT_CMND_HOLD_CUE sim/flight_controls/glider_all_release
+END_SOUND_ATTACHMENT
+
+# -------------------- Yoke ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/yoke
+	VEH_XYZ -0.031 -0.129 -2.225
+	EVENT_START_COND sim/cockpit2/controls/yoke_pitch_ratio == 1
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/yoke
+	VEH_XYZ -0.031 -0.129 -2.225
+	EVENT_START_COND sim/cockpit2/controls/yoke_pitch_ratio == -1
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/yoke
+	VEH_XYZ -0.031 -0.129 -2.225
+	EVENT_START_COND sim/cockpit2/controls/yoke_roll_ratio == 1
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/yoke
+	VEH_XYZ -0.031 -0.129 -2.225
+	EVENT_START_COND sim/cockpit2/controls/yoke_roll_ratio == -1
+END_SOUND_ATTACHMENT
+
+# -------------------- Battery ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/sw_metal
+	VEH_XYZ -0.115 -0.006 -2.380
+	EVENT_POLYPHONIC
+	EVENT_START_COND ABS_DELTA=sim/cockpit2/electrical/battery_on[0] > 0
+	EVENT_END_COND ABS_DELTA=sim/cockpit2/electrical/battery_on[0] == 0
+END_SOUND_ATTACHMENT
+
+# -------------------- Avionics ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/sw_metal
+	VEH_XYZ -0.115 -0.006 -2.380
+	EVENT_POLYPHONIC
+	EVENT_START_COND ABS_DELTA=sim/cockpit2/switches/avionics_power_on > 0
+	EVENT_END_COND ABS_DELTA=sim/cockpit2/switches/avionics_power_on == 0
+END_SOUND_ATTACHMENT
+
+# -------------------- Vario audio ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/sw_metal
+	VEH_XYZ -0.115 -0.006 -2.380
+	EVENT_POLYPHONIC
+	EVENT_START_COND ABS_DELTA=sim/cockpit2/switches/total_energy_audio_on > 0
+	EVENT_END_COND ABS_DELTA=sim/cockpit2/switches/total_energy_audio_on == 0
+END_SOUND_ATTACHMENT
+
+# -------------------- COM1 power ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/sw_metal
+	VEH_XYZ -0.016 -0.123 -2.311
+	EVENT_POLYPHONIC
+	EVENT_START_COND ABS_DELTA=sim/cockpit2/radios/actuators/com1_power > 0
+	EVENT_END_COND ABS_DELTA=sim/cockpit2/radios/actuators/com1_power == 0
+END_SOUND_ATTACHMENT
+
+# -------------------- COM1 sel ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/sel_small
+	VEH_XYZ -0.016 -0.123 -2.311
+	EVENT_POLYPHONIC
+	EVENT_START_COND ABS_DELTA=sim/cockpit2/radios/actuators/com1_right_is_selected > 0
+	EVENT_END_COND ABS_DELTA=sim/cockpit2/radios/actuators/com1_right_is_selected == 0
+END_SOUND_ATTACHMENT
+
+# -------------------- COM1 freq ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/rot_med_single
+	VEH_XYZ -0.016 -0.123 -2.311
+	EVENT_POLYPHONIC
+	EVENT_CMND_HOLD_STOP sim/radios/actv_com1_coarse_up
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/rot_med_single
+	VEH_XYZ -0.016 -0.123 -2.311
+	EVENT_POLYPHONIC
+	EVENT_CMND_HOLD_STOP sim/radios/actv_com1_coarse_down
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/rot_small_single
+	VEH_XYZ -0.016 -0.123 -2.311
+	EVENT_POLYPHONIC
+	EVENT_CMND_HOLD_STOP sim/radios/actv_com1_fine_up
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/rot_small_single
+	VEH_XYZ -0.016 -0.123 -2.311
+	EVENT_POLYPHONIC
+	EVENT_CMND_HOLD_STOP sim/radios/actv_com1_fine_down
+END_SOUND_ATTACHMENT
+
+# -------------------- Rudder pedals ---------------------
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/pedals
+	VEH_XYZ 0.019 -0.103 -2.554
+	EVENT_ALWAYS
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/pedal_top
+	VEH_XYZ 0.019 -0.103 -2.554
+	PARAM_DREF_IDX 0
+	EVENT_START_COND sim/flightmodel2/wing/rudder1_deg[0] == 25
+END_SOUND_ATTACHMENT
+BEGIN_SOUND_ATTACHMENT
+	EVENT_NAME /ask21/switches/pedal_top
+	VEH_XYZ 0.019 -0.103 -2.554
+	PARAM_DREF_IDX 0
+	EVENT_START_COND sim/flightmodel2/wing/rudder1_deg[0] == -25
+END_SOUND_ATTACHMENT

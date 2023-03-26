@@ -25,7 +25,7 @@ local total_energy_fmod_offset_fpm = 125 -- feet/minute
 -- Nota bene:
 -- - typical glider variometers - e.g. Winter's - sport a time constant of 3 seconds
 -- - total energy meter is further dampened, as a matter of personal preference
--- - variometer (FMOD) sound is offset to "Netto", as a matter of personal preference
+-- - variometer (FMOD) sound is offset to "Netto", to match the 0-100fpm sink-climb gap in the FMOD event
 
 function initialize()
 

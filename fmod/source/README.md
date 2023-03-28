@@ -1,6 +1,8 @@
 Custom (additional) sound for FMOD
 =====
 
+   ![FMOD-Studio](FMOD-Studio.jpg)
+
 In order to **add** _custom_ sounds to [FMOD](https://developer.x-plane.com/article/using-fmod-with-x-plane/)-ed
 aircrafts, one needs to (_italic_ relates to FMOD objects/terms, **bold** to X-Plane's and `literal`
 to custom resources/settings):

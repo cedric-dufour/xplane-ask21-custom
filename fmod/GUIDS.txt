@@ -44,7 +44,8 @@
 {ed328c82-e74b-448c-a587-aa1947f02964} parameter:/Distance2
 {52561dea-766c-4e63-9cf7-106f53f0a996} parameter:/Distance4
 {a73ec71f-0064-4a34-b951-a153f538862f} parameter:/laminar.ask21.sound.rudder_speed
-{56383656-c1d9-44a8-9b3f-48d9f0268ad0} parameter:/laminar.ask21.total_energy_fmod_fpm
+{0106df92-f361-4559-8505-a8d029ae8c6e} parameter:/laminar.ask21.total_energy_fmod_climb_fpm
+{62a9298b-ec4b-463d-b8c5-59d8d8211a7b} parameter:/laminar.ask21.total_energy_fmod_sink_fpm
 {93bc9de1-1f96-480a-b84c-71076c1439ce} parameter:/sim.cockpit2.gauges.indicators.total_energy_fpm
 {28f41109-b8e5-454b-aa21-b12cb32baf17} parameter:/sim.flightmodel.forces.g_nrml
 {9e7d3634-6c9b-433a-9106-7f88f7d5a605} parameter:/sim.flightmodel.forces.wing_ground_scrape_f[#]

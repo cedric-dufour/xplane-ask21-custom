@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{fd3f49cd-0361-421a-ad28-8937e32bc309}">
+		<property name="name">
+			<value>laminar.ask21.total_energy_fmod_climb_fpm</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c3b31e07-1a69-0471-2a9a-46231ee83a8c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{0106df92-f361-4559-8505-a8d029ae8c6e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{0106df92-f361-4559-8505-a8d029ae8c6e}">
+		<property name="minimum">
+			<value>-1000</value>
+		</property>
+		<property name="maximum">
+			<value>1000</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

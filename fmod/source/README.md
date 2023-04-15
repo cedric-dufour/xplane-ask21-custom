@@ -17,7 +17,7 @@ to custom resources/settings):
 * Make sure to assign your custom _Event(s)_ to that `Custom` _Bank_
   (in the FMOD "_Banks_" tab or right-clicking on the _Event_ -> "_Assign to Bank_")
 
-* When using (custom) _Parameter(s)_ - e.g. `laminar.ask21.total_energy_fmod_fpm` - make sure to configure them as:
+* When using (custom) _Parameter(s)_ - e.g. `laminar.ask21.total_energy_fmod_climb_fpm` - make sure to configure them as:
   - _Name_: replace slashes ("/")  with dots (".") in the **Dataref** name
     (do NOT use _Folders_ to organize those _Parameters_)
   - _Type_: "_User: Continuous_"
@@ -37,8 +37,9 @@ to custom resources/settings):
     e.g. `{3a77f22a-6669-4a4d-ba89-87a0a90cd583} bank:/Custom`
   - the custom `ask21/alerts/vario_xlua` _Event_ GUID;
     e.g. `{2d01cfe5-5d51-4641-a30d-a7cfaa56de16} event:/ask21/alerts/vario_xlua`
-  - the custom `laminar.ask21.total_energy_fmod_fpm` _Parameter_ GUID;
-    e.g. `{56383656-c1d9-44a8-9b3f-48d9f0268ad0} parameter:/laminar.ask21.total_energy_fmod_fpm`
+  - the custom `laminar.ask21.total_energy_fmod_*_fpm` _Parameters_ GUIDs;
+    e.g. `{0106df92-f361-4559-8505-a8d029ae8c6e} parameter:/laminar.ask21.total_energy_fmod_climb_fpm`
+    and  `{62a9298b-ec4b-463d-b8c5-59d8d8211a7b} parameter:/laminar.ask21.total_energy_fmod_sink_fpm`
 
 * Edit the aircraft existing "**fmod/ASK21.snd**" file and:
   - ___add___ the `Custom` _Bank_ file requirement: `REQUIRES_BANK Custom.bank`
@@ -48,7 +49,13 @@ to custom resources/settings):
   e.g. in "**plugins/xlua/scripts/ask21_variometer/`ask21_variometer.lua`**":
 
 ```
-total_energy_fmod_fpm = create_dataref("laminar/ask21/total_energy_fmod_fpm","number")
+// Create datarefs
+total_energy_fmod_climb_fpm = create_dataref("laminar/ask21/total_energy_fmod_climb_fpm","number")
+total_energy_fmod_sink_fpm = create_dataref("laminar/ask21/total_energy_fmod_sink_fpm","number")
+
+// Update datarefs
+total_energy_fmod_climb_fpm = ...
+total_energy_fmod_sink_fpm = ...
 ```
 
 * When making changes and reloading the aircraft in X-Plane, make sure to **Menu > Developer >

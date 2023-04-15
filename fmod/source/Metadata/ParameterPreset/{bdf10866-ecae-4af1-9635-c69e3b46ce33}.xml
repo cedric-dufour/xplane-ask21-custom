@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{bdf10866-ecae-4af1-9635-c69e3b46ce33}">
+		<property name="name">
+			<value>laminar.ask21.total_energy_fmod_sink_fpm</value>
+		</property>
+		<relationship name="folder">
+			<destination>{c3b31e07-1a69-0471-2a9a-46231ee83a8c}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{62a9298b-ec4b-463d-b8c5-59d8d8211a7b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{62a9298b-ec4b-463d-b8c5-59d8d8211a7b}">
+		<property name="minimum">
+			<value>-1000</value>
+		</property>
+		<property name="maximum">
+			<value>1000</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

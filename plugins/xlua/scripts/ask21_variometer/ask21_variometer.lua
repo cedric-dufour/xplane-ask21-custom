@@ -3,9 +3,12 @@
 
 total_energy_fpm = find_dataref("sim/cockpit2/gauges/indicators/total_energy_fpm")
 
-total_energy_filtered_fpm = create_dataref("laminar/ask21/total_energy_filtered_fpm","number")   -- the filtered total energy in feet/minute
-total_energy_fmod_fpm = create_dataref("laminar/ask21/total_energy_fmod_fpm","number")   -- the FMOD-specific total energy in feet/minute
-variometer_filtered_ms = create_dataref("laminar/ask21/variometer_filtered_ms","number") -- the filtered variometer in meter/sec
+-- Custom
+total_energy_filtered_fpm = create_dataref("laminar/ask21/total_energy_filtered_fpm","number")  -- the filtered total energy in feet/minute
+variometer_filtered_ms = create_dataref("laminar/ask21/variometer_filtered_ms","number")        -- the filtered variometer in meter/sec
+-- (FMOD)
+total_energy_fmod_climb_fpm = create_dataref("laminar/ask21/total_energy_fmod_climb_fpm","number")  -- the FMOD, climb-tone-specific total energy in feet/minute
+total_energy_fmod_sink_fpm = create_dataref("laminar/ask21/total_energy_fmod_sink_fpm","number")    -- the FMOD, sink-tone-specific total energy in feet/minute
 
 ----------------------------------------------------------------------------------------------------
 -- USER VARIABLES AND FUNCTIONS
@@ -18,20 +21,27 @@ variometer_filtered_ms = create_dataref("laminar/ask21/variometer_filtered_ms","
 --   decay factor:   d  = e^(-1/T)
 --   damping factor: d' = 1-d
 --   time constant:  T  = -1/ln(d)  <- time for the output to reach (1-1/e) - ~65% - of its final value (with constant input)
+-- Nota bene:
+-- - typical glider variometers - e.g. Winter's - sport a time constant of 3 seconds (1.6-1.8 for "S" versions)
+-- - total energy meter (also use for climb/sink tones) is further dampened, as a matter of personal preference
 local total_energy_time_constant = 5 -- seconds
 local variometer_time_constant = 3 -- seconds
-local total_energy_fmod_offset_fpm = 125 -- feet/minute
 
+-- FMOD climb/sink tones
 -- Nota bene:
--- - typical glider variometers - e.g. Winter's - sport a time constant of 3 seconds
--- - total energy meter is further dampened, as a matter of personal preference
--- - variometer (FMOD) sound is offset to "Netto", to match the 0-100fpm sink-climb gap in the FMOD event
+-- - climb/sink tones are "centered" (in FMOD) at 0 fpm
+-- - use the climb/sink offsets below to adjust when tones start according to your preferences
+local total_energy_fmod_climb_offset_fpm = 0 -- feet/minute
+local total_energy_fmod_sink_offset_fpm = -125 -- feet/minute
 
 function initialize()
 
+   -- Initialize datarefs
    total_energy_filtered_fpm = total_energy_fpm
-   total_energy_fmod_fpm = total_energy_filtered_fpm + total_energy_fmod_offset_fpm
    variometer_filtered_ms = total_energy_fpm * 0.00508
+   -- (FMOD)
+   total_energy_fmod_climb_fpm = total_energy_filtered_fpm - total_energy_fmod_climb_offset_fpm
+   total_energy_fmod_sink_fpm = total_energy_filtered_fpm - total_energy_fmod_sink_offset_fpm
 
 end
 
@@ -43,8 +53,10 @@ function update_datarefs()
 
    -- Update datarefs
    total_energy_filtered_fpm = total_energy_filtered_fpm*total_energy_decay + total_energy_fpm*(1-total_energy_decay)
-   total_energy_fmod_fpm = total_energy_filtered_fpm + total_energy_fmod_offset_fpm
    variometer_filtered_ms = variometer_filtered_ms*variometer_decay + total_energy_fpm*(1-variometer_decay) * 0.00508
+   -- (FMOD)
+   total_energy_fmod_climb_fpm = total_energy_filtered_fpm - total_energy_fmod_climb_offset_fpm
+   total_energy_fmod_sink_fpm = total_energy_filtered_fpm - total_energy_fmod_sink_offset_fpm
 
 end
 
